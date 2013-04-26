@@ -36,16 +36,19 @@ DOC_BEGIN = r"""\documentclass{article}
 \renewcommand\sn[1]{{\color{blue}#1}}
 \newcommand\so[1]{\textbf{\color{o}#1}}
 \renewcommand\sc[1]{\textbf{\color{c}#1}}
-\begin{document}
+\begin{document}\phantomsection{}
 """
 
-SECTION_BEGIN = r"""\newpage
-\phantomsection{}\addcontentsline{toc}{section}{%s}
+SECTION_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
 \begin{Verbatim}[commandchars=\\\{\}]
+"""
+
+CHAPTER_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
 """
 
 SECTION_END = """
 \\end{Verbatim}
+\\newpage\\phantomsection{}
 """
 
 DOC_END = """\\end{document}
@@ -67,12 +70,22 @@ def main():
     fout = codecs.open('vimdoc.tex', 'w', 'utf-8')
     fout.write(DOC_BEGIN)
 
+    level = "chapter"
     for row in contents:
         split_row = row.strip().split(None, 1)
         if len(split_row) != 2:
             continue
         filename, title = split_row
-        fout.write(SECTION_BEGIN % title)
+        if filename == "#":
+            fout.write(CHAPTER_BEGIN % ("chapter", title))
+            level = "section"
+            continue
+        if filename == "##":
+            fout.write(CHAPTER_BEGIN % ("section", title))
+            level = "subsection"
+            continue
+
+        fout.write(SECTION_BEGIN % (level, title))
 
         print "Processing " + filename + "..."
         text = slurp(os.path.join('doc', filename))

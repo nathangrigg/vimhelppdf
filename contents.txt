@@ -1,6 +1,9 @@
+# Overview
 help.txt overview and quick reference
 quickref.txt Overview of the most common commands you will use
+# User manual
 usr_toc.txt Table Of Contents
+## Getting started
 usr_01.txt About the manuals
 usr_02.txt The first steps in Vim
 usr_03.txt Moving around
@@ -13,6 +16,7 @@ usr_09.txt Using the GUI
 usr_10.txt Making big changes
 usr_11.txt Recovering from a crash
 usr_12.txt Clever tricks
+## Editing Effectively
 usr_20.txt Typing command-line commands quickly
 usr_21.txt Go away and come back
 usr_22.txt Finding the file to edit
@@ -26,13 +30,17 @@ usr_29.txt Moving through programs
 usr_30.txt Editing programs
 usr_31.txt Exploiting the GUI
 usr_32.txt The undo tree
+## Tuning Vim
 usr_40.txt Make new commands
 usr_41.txt Write a Vim script
 usr_42.txt Add new menus
 usr_43.txt Using filetypes
 usr_44.txt Your own syntax highlighted
 usr_45.txt Select your language
+## Making Vim Run
 usr_90.txt Installing Vim
+# Reference Manual
+## General subjects
 intro.txt general introduction to Vim; notation used in help files
 helphelp.txt about using the help files
 index.txt alphabetical index of all commands
@@ -44,6 +52,7 @@ todo.txt known problems and desired extensions
 develop.txt development of Vim
 debug.txt debugging Vim itself
 uganda.txt Vim distribution conditions and what to do with your money
+## Basic editing
 starting.txt starting Vim, Vim command arguments, initialisation
 editing.txt editing and writing files
 motion.txt commands for moving around
@@ -56,6 +65,7 @@ repeat.txt repeating commands, Vim scripts and debugging
 visual.txt using the Visual mode (selecting a text area)
 various.txt various remaining commands
 recover.txt recovering from a crash
+## Advanced editing
 cmdline.txt Command-line editing
 options.txt description of all options
 pattern.txt regexp patterns and search commands
@@ -71,6 +81,7 @@ autocmd.txt automatically executing commands on an event
 filetype.txt settings done specifically for a type of file
 eval.txt expression evaluation, conditional commands
 fold.txt hide (fold) ranges of lines
+## Special issures
 print.txt printing
 remote.txt using Vim as a server or client
 term.txt using different terminals and mice
@@ -85,10 +96,12 @@ ft_ada.txt Ada (the programming language) support
 ft_sql.txt about the SQL filetype plugin
 hangulin.txt Hangul (Korean) input mode
 rileft.txt right-to-left editing mode
+## GUI
 gui.txt Graphical User Interface (GUI)
 gui_w16.txt Windows 3.1 GUI
 gui_w32.txt Win32 GUI
 gui_x11.txt X11 GUI
+## Interfaces
 if_cscop.txt using Cscope with Vim
 if_lua.txt Lua interface
 if_mzsch.txt MzScheme interface
@@ -102,11 +115,13 @@ debugger.txt Interface with a debugger
 workshop.txt Sun Visual Workshop interface
 netbeans.txt NetBeans External Editor interface
 sign.txt debugging signs
+## Versions
 vi_diff.txt Main differences between Vim and Vi
 version4.txt Differences between Vim version 3.0 and 4.x
 version5.txt Differences between Vim version 4.6 and 5.x
 version6.txt Differences between Vim version 5.7 and 6.x
 version7.txt Differences between Vim version 6.4 and 7.x
+## Remarks about specific systems
 os_390.txt OS/390 Unix
 os_amiga.txt Amiga
 os_beos.txt BeOS and BeBox
@@ -120,6 +135,7 @@ os_risc.txt RISC-OS
 os_unix.txt Unix
 os_vms.txt VMS
 os_win32.txt MS-Windows 95/98/NT
+## Standard plugins
 pi_getscript.txt Downloading latest version of Vim scripts
 pi_gzip.txt Reading and writing compressed files
 pi_netrw.txt Reading and writing files over a network
@@ -127,6 +143,7 @@ pi_paren.txt Highlight matching parens
 pi_tar.txt Tar file explorer
 pi_vimball.txt Create a self-installing Vim script
 pi_zip.txt Zip archive explorer
+# Miscellaneous
 sponsor.txt Sponsor Vim development, become a registered Vim user
 vim_faq.txt Frequently asked questions
 tags.txt Index
