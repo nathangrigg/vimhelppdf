@@ -19,8 +19,14 @@ DOC_BEGIN = r"""\documentclass{article}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{fancyvrb}
 \usepackage{fontspec}
+\setromanfont{Avenir Next}
 \setmonofont{Source Code Pro}
-\usepackage[margin=1in,left=1.25in]{geometry}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0in}
+\cfoot{\rightmark{} \textemdash{} \thepage}
 \renewcommand\ll[2]{\hyperref[#1]{\si{#2}}}
 \newcommand\ld[2]{\hyperref[#1]{\color{black}#2}}
 \newcommand\ls[2]{\hyperref[#1]{\ss{#2}}}
@@ -40,6 +46,7 @@ DOC_BEGIN = r"""\documentclass{article}
 """
 
 SECTION_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
+\markright{%s}
 \begin{Verbatim}[commandchars=\\\{\}]
 """
 
@@ -85,7 +92,7 @@ def main():
             level = "subsection"
             continue
 
-        fout.write(SECTION_BEGIN % (level, title))
+        fout.write(SECTION_BEGIN % (level, title, filename.replace('_', r'\_')))
 
         print "Processing " + filename + "..."
         text = slurp(os.path.join('doc', filename))
