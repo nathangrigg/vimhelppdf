@@ -30,11 +30,11 @@ DOC_BEGIN = r"""\documentclass{article}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0in}
 \cfoot{\rightmark{} \textemdash{} \thepage}
-\renewcommand\ll[2]{\hyperref[#1]{\si{#2}}}
-\newcommand\ld[2]{\hyperref[#1]{\color{black}#2}}
-\newcommand\ls[2]{\hyperref[#1]{\ss{#2}}}
-\newcommand\lo[2]{\hyperref[#1]{\so{#2}}}
-\newcommand\lc[2]{\hyperref[#1]{\sc{#2}}}
+\renewcommand\ll[2]{\hyperlink{#1}{\si{#2}}}
+\newcommand\ld[2]{\hyperlink{#1}{\color{black}#2}}
+\newcommand\ls[2]{\hyperlink{#1}{\ss{#2}}}
+\newcommand\lo[2]{\hyperlink{#1}{\so{#2}}}
+\newcommand\lc[2]{\hyperlink{#1}{\sc{#2}}}
 \newcommand\st[1]{{\color{t}#1}}
 \newcommand\si[1]{{\color{i}#1}}
 \newcommand\sn[1]{{\color{n}#1}}

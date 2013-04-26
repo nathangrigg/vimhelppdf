@@ -27,7 +27,6 @@ PAT_URL      = r'((?:https?|ftp)://[^\'"<> \t]+[a-zA-Z0-9/])'
 PAT_WORD     = r'((?<!' + PAT_WORDCHAR + r')' + PAT_WORDCHAR + r'+' \
                  r'(?!' + PAT_WORDCHAR + r'))'
 
-RE_STARWORD = re.compile(PAT_STARWORD)
 RE_LINKWORD = re.compile(
         PAT_OPTWORD  + '|' +
         PAT_CTRL     + '|' +
@@ -123,8 +122,6 @@ class VimH2H(object):
                 else:
                     out.extend((r'\se{', tex_escape[line], '}', '\n'))
                     continue
-            if RE_STARWORD.search(line):
-                out.append('\\phantomsection{}')
             if RE_EG_START.match(line_tabs):
                 inexample = 1
                 line = line[0:-1]
@@ -145,8 +142,8 @@ class VimH2H(object):
                 if pipeword is not None:
                     out.extend((' ', self.maplink(pipeword, 'l'), ' '))
                 elif starword is not None:
-                    out.extend((' \\label{', starword.encode("hex"),
-                            '}\\st{', tex_escape[starword], '}', ' '))
+                    out.extend((' \\hypertarget{', starword.encode("hex"),
+                            '}{\\st{', tex_escape[starword], '}} '))
                 elif opt is not None:
                     out.append(self.maplink(opt, 'o'))
                 elif ctrl is not None:
