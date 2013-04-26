@@ -2,6 +2,10 @@
 
 import re
 
+VIM_FAQ_LINE = """\
+ \ll{76696d5f6661712e747874}{vim_faq.txt}       Frequently asked questions
+"""
+
 RE_TAGLINE = re.compile(r'(\S+)\s+(\S+)')
 
 PAT_WORDCHAR = '[!#-)+-{}~\xC0-\xFF]'
@@ -166,7 +170,7 @@ class VimH2H(object):
             out.append('\n')
             if inexample == 1: inexample = 2
             if faq_line:
-                # out.append(VIM_FAQ_LINE)
+                out.append(VIM_FAQ_LINE)
                 faq_line = False
 
         return ''.join(out)
