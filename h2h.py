@@ -7,6 +7,7 @@ import codecs
 from vimh2h import VimH2H
 
 DOC_BEGIN = r"""\documentclass{article}
+% \documentclass[a4paper]{article} %a4
 \usepackage{xcolor}
 \definecolor{i}{RGB}{0,137,139}
 \definecolor{t}{RGB}{250,0,250}
@@ -22,6 +23,8 @@ DOC_BEGIN = r"""\documentclass{article}
 \setromanfont{Avenir Next}
 \setmonofont{Source Code Pro}
 \usepackage[margin=1in]{geometry}
+% \usepackage[margin=0.9in]{geometry} % a4
+% \usepackage[margin=.4in,bottom=.8in,paperwidth=7.3in,paperheight=9.73in]{geometry} % ipad
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
