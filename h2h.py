@@ -17,6 +17,7 @@ DOC_BEGIN = r"""\documentclass{article}
 \definecolor{s}{RGB}{106,89,205}
 \definecolor{o}{RGB}{46,139,87}
 \definecolor{c}{RGB}{165,42,42}
+\usepackage{xltxtra}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{fancyvrb}
 \usepackage{fontspec}
@@ -61,7 +62,23 @@ SECTION_END = """
 \\newpage\\phantomsection{}
 """
 
-DOC_END = """\\end{document}
+DOC_END = r"""
+\vspace*{\stretch{4}}
+\markright{about this pdf}
+\addcontentsline{toc}{%s}{About this pdf}
+\begin{minipage}{5in}
+The text of this document is taken from the Vim
+help pages and the Vim FAQ.
+
+\bigskip
+
+The files are converted to pdf using \XeLaTeX with the hyperref package.
+The \href{https://github.com/nathangrigg/vimdocpdf}{conversion script}
+is written by Nathan Grigg, based on the HTML conversion script written
+by Carlo Teubner.
+\end{minipage}
+\vspace{\stretch{1}}
+\end{document}
 """
 
 def slurp(filename):
@@ -106,7 +123,7 @@ def main():
         fout.write(h2h.to_tex(filename, text))
         fout.write(SECTION_END)
 
-    fout.write(DOC_END)
+    fout.write(DOC_END % level)
 
 main()
 # cProfile.run('main()')
