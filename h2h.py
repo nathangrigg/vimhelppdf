@@ -20,21 +20,8 @@ SECTION_END = """
 """
 
 DOC_END = r"""
-\vspace*{\stretch{4}}
-\markright{about this pdf}
 \addcontentsline{toc}{%s}{About this pdf}
-\begin{minipage}{5in}
-The text of this document is taken from the Vim
-help pages and the Vim FAQ.
-
-\bigskip
-
-The files are converted to pdf using \XeLaTeX with the hyperref package.
-The \href{https://github.com/nathangrigg/vimdocpdf}{conversion script}
-is written by Nathan Grigg, based on the HTML conversion script written
-by Carlo Teubner.
-\end{minipage}
-\vspace{\stretch{1}}
+\markright{about this pdf}
 """
 
 def slurp(filename):
