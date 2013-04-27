@@ -23,21 +23,20 @@ update:
 $(docdir):
 	./update.sh
 
-%.pdf: %.tex body.tex preamble.tex
-	latexmk $<
+%.pdf: %.tex body.tex FORCE
+	xelatex $<
 
-body.tex: $(helpfiles) $(docdir)
-	./h2h.py
+body.tex: $(helpfiles) $(docdir) contents.txt
+	python h2h.py
 
 clean:
-	latexmk -c
-	rm body.tex
-	rm -r $(docdir)
+	-rm body.tex *.log *.aux *.toc
+	-rm -r $(docdir)
 
-clobber:
-	latexmk -C
+clobber: clean
+	-rm vimdoc{,-ipad,-a4}.pdf
 
 help:
 	@echo "$$TASKS"
 
-.PHONY: letter a4 ipad all update help clean clobber
+.PHONY: letter a4 ipad all update help clean clobber FORCE

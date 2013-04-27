@@ -14,7 +14,10 @@
 \newcommand{\engine}{\XeLaTeX}
 
 % hyperlinks
-\usepackage[colorlinks=true]{hyperref}
+\usepackage[pdftitle={Vim Documentation},
+    pdfsubject={Vim},
+    pdfcreator={XeLaTeX with hyperref},
+    colorlinks=true]{hyperref}
 \renewcommand\ll[2]{\hyperlink{#1}{\si{#2}}}
 \newcommand\ld[2]{\hyperlink{#1}{\color{black}#2}}
 \newcommand\ls[2]{\hyperlink{#1}{\ss{#2}}}
