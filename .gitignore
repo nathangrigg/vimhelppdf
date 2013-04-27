@@ -2,4 +2,9 @@
 doc/
 vim/
 vim_faq/
-vimdoc.*
+*.aux
+*.out
+*.log
+*.toc
+*.pdf
+body.tex
