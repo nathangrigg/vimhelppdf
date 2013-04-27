@@ -8,3 +8,5 @@ vim_faq/
 *.toc
 *.pdf
 body.tex
+*.fdb_latexmk
+*.fls
