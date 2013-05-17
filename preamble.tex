@@ -37,6 +37,15 @@
 % fancy verbatim for the Verbatim environment
 \usepackage{fancyvrb}
 
+% fix hyphens in URLs
+\makeatletter
+\let\ORIGhyper@normalise\hyper@normalise
+\def\grigg@hyper@normalise{%
+  \begingroup\begingroup\lccode`\~=`\-
+   \lowercase{\endgroup\edef~}{\string-}\expandafter\@gobble\ORIGhyper@normalise}
+\def\fixurl{\let\hyper@normalise\grigg@hyper@normalise}
+\makeatother
+
 % fontspec for the fonts (requires xelatex)
 \usepackage{fontspec}
 \setromanfont{Avenir Next}

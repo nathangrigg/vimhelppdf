@@ -8,7 +8,7 @@ from vimh2h import VimH2H
 
 SECTION_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
 \markright{%s}
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\},formatcom=\fixurl]
 """
 
 CHAPTER_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
