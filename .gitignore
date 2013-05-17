@@ -1,1 +1,4 @@
 *.pyc
+doc/
+vim/
+vim_faq/
