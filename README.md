@@ -26,5 +26,5 @@ The default `make` command makes a US letter sized PDF. You may also run `make
 a4` or `make ipad` for different PDF sizes. Latex being what it is, you may have
 to run `make` twice for everything to work right.
 
-Running `make update` will download the newest version of the vim
+Running `make update` will download the newest version of the Vim
 documentation.
