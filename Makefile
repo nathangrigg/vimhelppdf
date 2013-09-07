@@ -12,9 +12,9 @@ export TASKS
 docdir = doc
 helpfiles = $(wildcard $(docdir)/*.txt)
 
-letter: vimdoc.pdf
-a4: vimdoc-a4.pdf
-ipad: vimdoc-ipad.pdf
+letter: vimhelp.pdf
+a4: vimhelp-a4.pdf
+ipad: vimhelp-ipad.pdf
 all: letter a4 ipad
 
 update:
@@ -30,11 +30,11 @@ body.tex: $(helpfiles) $(docdir) contents.txt
 	python h2h.py
 
 clean:
-	-rm body.tex *.log *.aux *.toc
+	-rm body.tex *.log *.aux *.toc *.out
 	-rm -r $(docdir)
 
 clobber: clean
-	-rm vimdoc{,-ipad,-a4}.pdf
+	-rm vimhelp{,-ipad,-a4}.pdf
 
 help:
 	@echo "$$TASKS"
