@@ -23,8 +23,12 @@ or eliminate some entirely. Note that any links into text files that
 are removed will break.
 
 The default `make` command makes a US letter sized PDF. You may also run `make
-a4` or `make ipad` for different PDF sizes. Latex being what it is, you may have
-to run `make` twice for everything to work right.
+a4` or `make ipad` for different PDF sizes.
+
+Latex requires multiple runs for things like generating the table of contents.
+You will have to run `make` twice for everything to work right. For this
+reason, running `make` with a PDF target will always run LaTeX, even
+if everything appears to be up to date.
 
 Running `make update` will download the newest version of the Vim
 documentation.
