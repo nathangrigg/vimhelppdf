@@ -6,7 +6,7 @@ echo Getting vim
 if [[ -d vim ]]; then
     ( cd vim; git pull )
 else
-    git clone https://github.com/b4winckler/vim
+    git clone https://github.com/vim/vim
 fi
 
 echo Getting vim_faq
