@@ -9,6 +9,8 @@ clobber delete all files
 endef
 export TASKS
 
+SHELL=/bin/bash
+
 docdir = doc
 helpfiles = $(wildcard $(docdir)/*.txt)
 
