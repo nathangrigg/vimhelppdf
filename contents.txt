@@ -59,6 +59,7 @@ motion.txt commands for moving around
 scroll.txt scrolling the text in the window
 insert.txt Insert and Replace mode
 change.txt deleting and replacing text
+channel.txt Inter-process communication
 indent.txt automatic indenting for C and other languages
 undo.txt Undo and Redo
 repeat.txt repeating commands, Vim scripts and debugging
@@ -98,7 +99,6 @@ hangulin.txt Hangul (Korean) input mode
 rileft.txt right-to-left editing mode
 ## GUI
 gui.txt Graphical User Interface (GUI)
-gui_w16.txt Windows 3.1 GUI
 gui_w32.txt Win32 GUI
 gui_x11.txt X11 GUI
 ## Interfaces
@@ -121,6 +121,7 @@ version4.txt Differences between Vim version 3.0 and 4.x
 version5.txt Differences between Vim version 4.6 and 5.x
 version6.txt Differences between Vim version 5.7 and 6.x
 version7.txt Differences between Vim version 6.4 and 7.x
+version8.txt Differences between Vim version 7.4 and 8.x
 ## Remarks about specific systems
 os_390.txt OS/390 Unix
 os_amiga.txt Amiga
@@ -138,6 +139,7 @@ os_win32.txt MS-Windows 95/98/NT
 ## Standard plugins
 pi_getscript.txt Downloading latest version of Vim scripts
 pi_gzip.txt Reading and writing compressed files
+pi_logipat.txt Logical Patterns
 pi_netrw.txt Reading and writing files over a network
 pi_paren.txt Highlight matching parens
 pi_tar.txt Tar file explorer
