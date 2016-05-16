@@ -81,7 +81,7 @@ autocmd.txt automatically executing commands on an event
 filetype.txt settings done specifically for a type of file
 eval.txt expression evaluation, conditional commands
 fold.txt hide (fold) ranges of lines
-## Special issures
+## Special issues
 print.txt printing
 remote.txt using Vim as a server or client
 term.txt using different terminals and mice
