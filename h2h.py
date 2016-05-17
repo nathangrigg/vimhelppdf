@@ -4,6 +4,7 @@ import sys
 import os.path
 import codecs
 # import cProfile
+import re
 from vimh2h import VimH2H
 
 SECTION_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
@@ -24,11 +25,26 @@ DOC_END = r"""
 \markright{about this pdf}
 """
 
+RE_NEWLINE   = re.compile(r'[\r\n]')
+VIM_MODELINE_RE = re.compile(r'^(.*)(\s+)(vim\:.+)')
+
+
 def slurp(filename):
     f = open(filename)
     c = f.read()
     f.close()
     return c
+
+def strip_modeline(text):
+    lines = RE_NEWLINE.split(text)
+    while not lines[-1].strip():
+        lines.pop()
+    parts = VIM_MODELINE_RE.match(lines[-1])
+    if parts is not None:
+        lines.pop()
+        if parts.group(1):
+            lines.append(parts.group(1))
+    return '\n'.join(lines)
 
 def main():
 
@@ -62,6 +78,7 @@ def main():
             text = text.decode('UTF-8')
         except UnicodeError:
             text = text.decode('ISO-8859-1')
+        text = strip_modeline(text)
         fout.write(h2h.to_tex(filename, text))
         fout.write(SECTION_END)
 
