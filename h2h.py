@@ -57,12 +57,9 @@ def main():
         fout.write(SECTION_BEGIN % (level, title, filename.replace('_', r'\_')))
 
         print "Processing " + filename + "..."
-        text = slurp(os.path.join('doc', filename))
-        try:
-            text = text.decode('UTF-8')
-        except UnicodeError:
-            text = text.decode('ISO-8859-1')
-        fout.write(h2h.to_tex(filename, text))
+        with open(os.path.join('doc', filename), 'rU') as fin:
+            for out_chunk in h2h.to_tex(fin, filename):
+                fout.write(out_chunk)
         fout.write(SECTION_END)
 
     fout.write(DOC_END % level)

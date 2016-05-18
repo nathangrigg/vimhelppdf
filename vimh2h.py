@@ -103,33 +103,44 @@ class VimH2H(object):
             return '\\s' + css_class + '{' + tex_escape[tag] + '}'
         else: return tex_escape[tag]
 
-    def to_tex(self, filename, contents):
-        out = [ ]
+    def to_tex(self, infile, filename):
 
         inexample = 0
         filename = str(filename)
         is_help_txt = (filename == 'help.txt')
         faq_line = False
-        for line in RE_NEWLINE.split(contents):
+        for line in infile:
+            try:
+                line = line.decode('UTF-8')
+            except UnicodeError:
+                line = line.decode('ISO-8859-1')
             line = line.rstrip('\r\n')
             line_tabs = line
             line = line.expandtabs()
             if RE_HRULE.match(line):
-                out.extend((r'\sh{', line, '}', '\n'))
+                yield r'\sh{'
+                yield line
+                yield '}'
+                yield '\n'
                 continue
             if inexample == 2:
                 if RE_EG_END.match(line):
                     inexample = 0
                     if line[0] == '<': line = line[1:]
                 else:
-                    out.extend((r'\se{', tex_escape[line], '}', '\n'))
+                    yield r'\se{'
+                    yield tex_escape[line]
+                    yield '}'
+                    yield '\n'
                     continue
             if RE_EG_START.match(line_tabs):
                 inexample = 1
                 line = line[0:-1]
             if RE_SECTION.match(line_tabs):
                 m = RE_SECTION.match(line)
-                out.extend((r'\sc{', m.group(0), r'}'))
+                yield r'\sc{'
+                yield m.group(0)
+                yield r'}'
                 line = line[m.end():]
             if is_help_txt and RE_LOCAL_ADD.match(line_tabs):
                 faq_line = True
@@ -137,44 +148,57 @@ class VimH2H(object):
             for match in RE_TAGWORD.finditer(line):
                 pos = match.start()
                 if pos > lastpos:
-                    out.append(tex_escape[line[lastpos:pos]])
+                    yield tex_escape[line[lastpos:pos]]
                 lastpos = match.end()
                 header, graphic, pipeword, starword, command, opt, ctrl, \
                         special, title, note, url, word = match.groups()
                 if pipeword is not None:
-                    out.extend((' ', self.maplink(pipeword, 'l'), ' '))
+                    yield ' '
+                    yield self.maplink(pipeword, 'l')
+                    yield ' '
                 elif starword is not None:
-                    out.extend((' \\hypertarget{', starword.encode("hex"),
-                            '}{\\st{', tex_escape[starword], '}} '))
+                    yield ' \\hypertarget{'
+                    yield starword.encode("hex")
+                    yield '}{\\st{'
+                    yield tex_escape[starword]
+                    yield '}} '
                 elif command is not None:
-                    out.extend(('`\\se{', tex_escape[command], '}`'))
+                    yield '`\\se{'
+                    yield tex_escape[command]
+                    yield '}`'
                 elif opt is not None:
-                    out.append(self.maplink(opt, 'o'))
+                    yield self.maplink(opt, 'o')
                 elif ctrl is not None:
-                    out.append(self.maplink(ctrl, 'k'))
+                    yield self.maplink(ctrl, 'k')
                 elif special is not None:
-                    out.append(self.maplink(special, 's'))
+                    yield self.maplink(special, 's')
                 elif title is not None:
-                    out.extend(('\\si{', tex_escape[title], '}'))
+                    yield '\\si{'
+                    yield tex_escape[title]
+                    yield '}'
                 elif note is not None:
-                    out.extend(('\\sn{', tex_escape[note], '}'))
+                    yield '\\sn{'
+                    yield tex_escape[note]
+                    yield '}'
                 elif header is not None:
-                    out.extend(('\\sh{', tex_escape[header[:-1]], '}'))
+                    yield '\\sh{'
+                    yield tex_escape[header[:-1]]
+                    yield '}'
                 elif graphic is not None:
-                    out.append(tex_escape[graphic[:-2]])
+                    yield tex_escape[graphic[:-2]]
                 elif url is not None:
-                    out.extend(('\\url{', url, '}'))
+                    yield '\\url{'
+                    yield url
+                    yield '}'
                 elif word is not None:
-                    out.append(self.maplink(word))
+                    yield self.maplink(word)
             if lastpos < len(line):
-                out.append(tex_escape[line[lastpos:]])
-            out.append('\n')
+                yield tex_escape[line[lastpos:]]
+            yield '\n'
             if inexample == 1: inexample = 2
             if faq_line:
-                out.append(VIM_FAQ_LINE)
+                yield VIM_FAQ_LINE
                 faq_line = False
-
-        return ''.join(out)
 
 class TexEscCache(dict):
     def __missing__(self, key):
