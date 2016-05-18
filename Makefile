@@ -14,6 +14,10 @@ SHELL=/bin/bash
 docdir = doc
 helpfiles = $(wildcard $(docdir)/*.txt)
 
+ifeq (no, ${FAQ})
+faq := nofaq
+endif
+
 letter: vimhelp.pdf
 a4: vimhelp-a4.pdf
 ipad: vimhelp-ipad.pdf
@@ -29,7 +33,7 @@ $(docdir):
 	xelatex $<
 
 body.tex: $(helpfiles) $(docdir) contents.txt
-	python h2h.py
+	python h2h.py $(faq)
 
 clean:
 	-rm body.tex *.log *.aux *.toc *.out

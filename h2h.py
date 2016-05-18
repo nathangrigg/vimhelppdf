@@ -32,9 +32,11 @@ def slurp(filename):
 
 def main():
 
+    include_faq = 'nofaq' not in sys.argv
     print "Processing tags..."
     h2h = VimH2H(slurp('doc/tags'))
-    h2h.add_tags(slurp('doc/vim_faq.txt'))
+    if include_faq:
+        h2h.add_tags(slurp('doc/vim_faq.txt'))
 
     contents = slurp('contents.txt').split('\n')
     fout = codecs.open('body.tex', 'w', 'utf-8')
@@ -45,6 +47,8 @@ def main():
         if len(split_row) != 2:
             continue
         filename, title = split_row
+        if not include_faq and filename == 'vim_faq.txt':
+            continue
         if filename == "#":
             fout.write(CHAPTER_BEGIN % ("chapter", title))
             level = "section"
@@ -62,7 +66,7 @@ def main():
             text = text.decode('UTF-8')
         except UnicodeError:
             text = text.decode('ISO-8859-1')
-        fout.write(h2h.to_tex(filename, text))
+        fout.write(h2h.to_tex(filename, text, include_faq))
         fout.write(SECTION_END)
 
     fout.write(DOC_END % level)
