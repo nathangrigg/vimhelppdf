@@ -28,6 +28,9 @@ $(docdir):
 
 %.pdf: %.tex body.tex FORCE
 	xelatex $<
+ifndef SECOND_TIME_RUN
+	$(MAKE) $(MAKECMDGOALS) SECOND_TIME_RUN=true
+endif
 
 body.tex: $(helpfiles) $(docdir) contents.txt
 	python h2h.py
