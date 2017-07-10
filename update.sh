@@ -1,5 +1,6 @@
 #!/bin/bash
 # Download updated vim documentation and faq
+#TODO: checkout only doc subdir from vim repo
 set -e
 
 echo Getting vim
