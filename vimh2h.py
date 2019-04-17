@@ -82,7 +82,7 @@ class VimH2H(object):
             self.do_add_tag(tag)
 
     def do_add_tag(self, tag):
-        args = "{" + tag.encode("hex") + "}{" + tex_escape[tag] + "}"
+        args = "{" + self.to_hex(tag) + "}{" + tex_escape[tag] + "}"
         link_pipe = '\\ll' + args
         classattr = '\\ld'
         m = RE_LINKWORD.match(tag)
@@ -102,6 +102,9 @@ class VimH2H(object):
         elif css_class is not None:
             return '\\s' + css_class + '{' + tex_escape[tag] + '}'
         else: return tex_escape[tag]
+
+    def to_hex(self, inputString):
+        return "".join([f'{ord(x):x}' for x in inputString])
 
     def to_tex(self, filename, contents):
         out = [ ]
@@ -144,8 +147,7 @@ class VimH2H(object):
                 if pipeword is not None:
                     out.extend((' ', self.maplink(pipeword, 'l'), ' '))
                 elif starword is not None:
-                    out.extend((' \\hypertarget{', starword.encode("hex"),
-                            '}{\\st{', tex_escape[starword], '}} '))
+                    out.extend((' \\hypertarget{', self.to_hex(starword), '}{\\st{', tex_escape[starword], '}} '))
                 elif command is not None:
                     out.extend(('`\\se{', tex_escape[command], '}`'))
                 elif opt is not None:
