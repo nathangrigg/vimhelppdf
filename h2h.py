@@ -10,6 +10,7 @@ SECTION_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
 """
 
 CHAPTER_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
+\phantomsection{}
 """
 
 SECTION_END = """
