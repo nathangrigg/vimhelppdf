@@ -46,6 +46,7 @@ RE_TAGWORD = re.compile(
         PAT_URL      + '|' +
         PAT_WORD)
 RE_NEWLINE   = re.compile(r'[\r\n]')
+RE_MODELINE  = re.compile(r'^\s*vim:')
 RE_HRULE     = re.compile(r'[-=]{3,}.*[-=]{3,3}$')
 RE_EG_START  = re.compile(r'(?:.* )?>$')
 RE_EG_END    = re.compile(r'\S')
@@ -113,7 +114,9 @@ class VimH2H(object):
         filename = str(filename)
         is_help_txt = (filename == 'help.txt')
         faq_line = False
-        for line in RE_NEWLINE.split(contents):
+        lines = RE_NEWLINE.split(contents)
+        remove_modeline(lines)
+        for line in lines:
             line = line.rstrip('\r\n')
             line_tabs = line
             line = line.expandtabs()
@@ -185,5 +188,12 @@ class TexEscCache(dict):
             r = pattern.sub(replacement, r)
         self[key] = r
         return r
+
+def remove_modeline(lines):
+    while lines[-1].strip() == '':
+        lines.pop()
+    if RE_MODELINE.match(lines[-1]):
+        lines.pop()
+
 
 tex_escape = TexEscCache()
