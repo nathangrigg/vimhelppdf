@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import argparse
 import sys
 import os.path
 import codecs
@@ -31,11 +32,15 @@ def slurp(filename):
     return c
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--faq', dest='faq', action='store_true')
+    parser.add_argument('--no-faq', dest='faq', action='store_false')
+    parser.set_defaults(faq=True)
+    args = parser.parse_args()
 
-    include_faq = 'nofaq' not in sys.argv
     print "Processing tags..."
     h2h = VimH2H(slurp('doc/tags'))
-    if include_faq:
+    if args.faq:
         h2h.add_tags(slurp('doc/vim_faq.txt'))
 
     contents = slurp('contents.txt').split('\n')
@@ -47,7 +52,7 @@ def main():
         if len(split_row) != 2:
             continue
         filename, title = split_row
-        if not include_faq and filename == 'vim_faq.txt':
+        if not args.faq and filename == 'vim_faq.txt':
             continue
         if filename == "#":
             fout.write(CHAPTER_BEGIN % ("chapter", title))
@@ -66,7 +71,7 @@ def main():
             text = text.decode('UTF-8')
         except UnicodeError:
             text = text.decode('ISO-8859-1')
-        fout.write(h2h.to_tex(filename, text, include_faq))
+        fout.write(h2h.to_tex(filename, text, args.faq))
         fout.write(SECTION_END)
 
     fout.write(DOC_END % level)

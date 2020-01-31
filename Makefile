@@ -14,8 +14,10 @@ SHELL=/bin/bash
 docdir = doc
 helpfiles = $(wildcard $(docdir)/*.txt)
 
+# If you use this you are going to want to do a `make clean` because
+# it will mess up the dependencies.
 ifeq (no, ${FAQ})
-faq := nofaq
+faq := --no-faq
 endif
 
 letter: vimhelp.pdf
