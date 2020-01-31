@@ -103,7 +103,7 @@ class VimH2H(object):
             return '\\s' + css_class + '{' + tex_escape[tag] + '}'
         else: return tex_escape[tag]
 
-    def to_tex(self, filename, contents):
+    def to_tex(self, filename, contents, include_faq):
         out = [ ]
 
         inexample = 0
@@ -131,7 +131,7 @@ class VimH2H(object):
                 m = RE_SECTION.match(line)
                 out.extend((r'\sc{', m.group(0), r'}'))
                 line = line[m.end():]
-            if is_help_txt and RE_LOCAL_ADD.match(line_tabs):
+            if include_faq and is_help_txt and RE_LOCAL_ADD.match(line_tabs):
                 faq_line = True
             lastpos = 0
             for match in RE_TAGWORD.finditer(line):
