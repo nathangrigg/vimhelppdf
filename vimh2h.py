@@ -103,8 +103,8 @@ class VimH2H(object):
             return '\\s' + css_class + '{' + tex_escape[tag] + '}'
         else: return tex_escape[tag]
 
-    def to_hex(self, inputString):
-        return "".join([f'{ord(x):x}' for x in inputString])
+    def to_hex(self, s):
+        return ''.join([f'{ord(c):x}' for c in s])
 
     def to_tex(self, filename, contents, include_faq):
         out = [ ]

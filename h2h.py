@@ -32,17 +32,17 @@ def main():
     args = parser.parse_args()
 
     print("Processing tags...")
-    with open(os.path.join('doc', 'tags'),'r') as inputFile:
-        h2h = VimH2H(inputFile.read())
-    with open(os.path.join('doc', 'vim_faq.txt'),'r') as inputFile:
-        h2h.add_tags(inputFile.read())
-    with open('contents.txt','r') as inputFile:
-        contents = inputFile.read().split('\n')
+    with open(os.path.join('doc', 'tags'), 'r') as input_file:
+        h2h = VimH2H(input_file.read())
+    with open(os.path.join('doc', 'vim_faq.txt'), 'r') as input_file:
+        h2h.add_tags(input_file.read())
+    with open('contents.txt', 'r') as input_file:
+        contents = input_file.read().split('\n')
     if args.faq:
-        with open('doc/vim_faq.txt','r') as inputFile:
-            h2h.add_tags(inputFile.read())
+        with open('doc/vim_faq.txt', 'r') as input_file:
+            h2h.add_tags(input_file.read())
 
-    with open('body.tex', 'w') as outputFile:
+    with open('body.tex', 'w') as output_file:
         level = "chapter"
         for row in contents:
             split_row = row.strip().split(None, 1)
@@ -52,23 +52,23 @@ def main():
             if not args.faq and filename == 'vim_faq.txt':
                 continue
             if filename == "#":
-                outputFile.write(CHAPTER_BEGIN % ("chapter", title))
+                output_file.write(CHAPTER_BEGIN % ("chapter", title))
                 level = "section"
                 continue
             if filename == "##":
-                outputFile.write(CHAPTER_BEGIN % ("section", title))
+                output_file.write(CHAPTER_BEGIN % ("section", title))
                 level = "subsection"
                 continue
 
             print("Processing " + filename + "...")
-            outputFile.write(SECTION_BEGIN % (level, title, filename.replace('_', r'\_')))
+            output_file.write(SECTION_BEGIN % (level, title, filename.replace('_', r'\_')))
 
-            with open(os.path.join('doc', filename),'r') as inputFile:
-                text =inputFile.read()
-            outputFile.write(h2h.to_tex(filename, text, args.faq))
-            outputFile.write(SECTION_END)
+            with open(os.path.join('doc', filename), 'r') as input_file:
+                text = input_file.read()
+            output_file.write(h2h.to_tex(filename, text, args.faq))
+            output_file.write(SECTION_END)
 
-        outputFile.write(DOC_END % level)
+        output_file.write(DOC_END % level)
 
 main()
 # cProfile.run('main()')
