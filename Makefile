@@ -35,7 +35,7 @@ $(docdir):
 	xelatex $<
 
 body.tex: $(helpfiles) $(docdir) contents.txt
-	python h2h.py $(faq)
+	python3 h2h.py $(faq)
 
 clean:
 	-rm body.tex *.log *.aux *.toc *.out
