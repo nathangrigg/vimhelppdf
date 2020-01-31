@@ -16,7 +16,7 @@ CHAPTER_BEGIN = r"""\addcontentsline{toc}{%s}{%s}
 
 SECTION_END = """
 \\end{Verbatim}
-\\newpage\\phantomsection{}
+\\cleardoublepage\\phantomsection{}
 """
 
 DOC_END = r"""
