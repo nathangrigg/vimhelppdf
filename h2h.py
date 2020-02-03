@@ -34,13 +34,11 @@ def main():
     print("Processing tags...")
     with open(os.path.join('doc', 'tags'), 'r') as input_file:
         h2h = VimH2H(input_file.read())
-    with open(os.path.join('doc', 'vim_faq.txt'), 'r') as input_file:
-        h2h.add_tags(input_file.read())
+    if args.faq:
+        with open(os.path.join('doc', 'vim_faq.txt'), 'r') as input_file:
+            h2h.add_tags(input_file.read())
     with open('contents.txt', 'r') as input_file:
         contents = input_file.read().split('\n')
-    if args.faq:
-        with open('doc/vim_faq.txt', 'r') as input_file:
-            h2h.add_tags(input_file.read())
 
     with open('body.tex', 'w') as output_file:
         level = "chapter"
