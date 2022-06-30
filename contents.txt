@@ -37,6 +37,9 @@ usr_42.txt Add new menus
 usr_43.txt Using filetypes
 usr_44.txt Your own syntax highlighted
 usr_45.txt Select your language
+usr_50.txt Advanced Vim script writing
+usr_51.txt Write plugins
+usr_52.txt Write larger plugins
 ## Making Vim Run
 usr_90.txt Installing Vim
 # Reference Manual
@@ -76,6 +79,7 @@ spell.txt spell checking
 diff.txt working with two to four versions of the same file
 autocmd.txt automatically executing commands on an event
 eval.txt expression evaluation, conditional commands
+builtin.txt Builtin functions
 channel.txt Inter-process communication
 fold.txt hide (fold) ranges of lines
 ## Special issues
@@ -85,6 +89,8 @@ remote.txt using Vim as a server or client
 term.txt using different terminals and mice
 terminal.txt Terminal window support
 popup.txt popop window support
+##vim9
+vim9.txt Vim9 script commands and expressions
 ## Programming language support
 indent.txt automatic indenting for C and other languages
 syntax.txt syntax highlighting
@@ -92,6 +98,8 @@ textprop.txt Attaching properties to text for highlighting or other
 filetype.txt settings done specifically for a type of file
 quickfix.txt commands for a quick edit-compile-fix cycle
 ft_ada.txt Ada (the programming language) support
+ft_ps1.txt A Windows PowerShell syntax plugin for Vim
+ft_raku.txt The Raku programming language filetype
 ft_rust.txt Filetype plugin for Rust
 ft_sql.txt about the SQL filetype plugin
 ## Language support
@@ -127,11 +135,13 @@ version5.txt Differences between Vim version 4.6 and 5.x
 version6.txt Differences between Vim version 5.7 and 6.x
 version7.txt Differences between Vim version 6.4 and 7.x
 version8.txt Differences between Vim version 7.4 and 8.x
+version9.txt Differences between Vim version 8.2 and 9.0
 ## Remarks about specific systems
 os_390.txt OS/390 Unix
 os_amiga.txt Amiga
 os_beos.txt BeOS and BeBox
 os_dos.txt MS-DOS and MS-Windows NT/95 common items
+os_haiku.txt Haiku
 os_mac.txt Macintosh
 os_mint.txt Atari MiNT
 os_msdos.txt MS-DOS (plain DOS and DOS box under Windows)
