@@ -32,3 +32,10 @@ if everything appears to be up to date.
 
 Running `make update` will download the newest version of the Vim
 documentation.
+
+If you want to reduce the size of the final PDF by a couple of hundred pages
+you can the exclude the Vim FAQ by using:
+```
+make FAQ=no ...
+```
+which will pass the `--no-faq` switch to the `h2h.py` script.
