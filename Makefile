@@ -1,7 +1,6 @@
 define TASKS
 letter  make letter-sized version
 a4      make a4-sized version
-ipad    make ipad-sized version
 all     make all versions
 update  update vim help and vim-faq from repository
 clean   delete intermediate files
@@ -22,8 +21,7 @@ endif
 
 letter: vimhelp.pdf
 a4: vimhelp-a4.pdf
-ipad: vimhelp-ipad.pdf
-all: letter a4 ipad
+all: letter a4
 
 update:
 	./update.sh
