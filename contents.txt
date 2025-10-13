@@ -91,6 +91,8 @@ terminal.txt Terminal window support
 popup.txt popop window support
 ##vim9
 vim9.txt Vim9 script commands and expressions
+userfunc.txt Defining and using functions
+vim9class.txt Vim9 classes, objects, interfaces, types and enums
 ## Programming language support
 indent.txt automatic indenting for C and other languages
 syntax.txt syntax highlighting
@@ -102,6 +104,9 @@ ft_ps1.txt A Windows PowerShell syntax plugin for Vim
 ft_raku.txt The Raku programming language filetype
 ft_rust.txt Filetype plugin for Rust
 ft_sql.txt about the SQL filetype plugin
+ft_context.txt about the ConTeXt filetype plugin
+ft_hare.txt Support for the Hare programming language
+ft_mp.txt about the METAFONT and MetaPost filetype plugin
 ## Language support
 digraph.txt list of available digraphs
 mbyte.txt multi-byte text support
@@ -112,10 +117,12 @@ farsi.txt Farsi (Persian) editing
 hebrew.txt Hebrew language support and editing
 russian.txt Russian language support and editing
 hangulin.txt Hangul (Korean) input mode
+vietnamese.txt Vietnamese language support
 ## GUI
 gui.txt Graphical User Interface (GUI)
 gui_w32.txt Win32 GUI
 gui_x11.txt X11 GUI
+wayland.txt Wayland Protocol Support
 ## Interfaces
 if_cscop.txt using Cscope with Vim
 if_lua.txt Lua interface
@@ -135,7 +142,7 @@ version5.txt Differences between Vim version 4.6 and 5.x
 version6.txt Differences between Vim version 5.7 and 6.x
 version7.txt Differences between Vim version 6.4 and 7.x
 version8.txt Differences between Vim version 7.4 and 8.x
-version9.txt Differences between Vim version 8.2 and 9.0
+version9.txt Differences between Vim version 8.2 and 9.x
 ## Remarks about specific systems
 os_390.txt OS/390 Unix
 os_amiga.txt Amiga
@@ -161,6 +168,7 @@ pi_spec.txt Filetype plugin to work with rpm spec files
 pi_tar.txt Tar file explorer
 pi_vimball.txt Create a self-installing Vim script
 pi_zip.txt Zip archive explorer
+pi_tutor.txt Interactive tutorials for Vim
 # Miscellaneous
 sponsor.txt Sponsor Vim development, become a registered Vim user
 vim_faq.txt Frequently asked questions
